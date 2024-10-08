@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <ctype.h>
+
+#define RANGE 100
+#define TRUE 1
+#define FALSE 0
+#define BUFFER_LEN 100
+
+int main() {
+    srand(time(NULL));
+
+    int keep_playing = TRUE;
+    while(keep_playing){
+        int secret_number = rand() % RANGE + 1;
+        printf("Number Guessing Game\n"
+                      "--------------------\n");
+        printf("I have chosen a secret number between 1 and %d\n", RANGE);
+
+        int tries = 0;
+        int guessed = FALSE;
+        char buffer[BUFFER_LEN];
+        
+        while(!guessed) {
+            int guess;
+            printf("Your guess: ");
+            fgets(buffer, BUFFER_LEN, stdin);
+            if (sscanf(buffer, "%d", &guess) != 1) {
+                printf("Please enter a valid number!\n");
+                
+            } else if (guess <= 0 || guess > RANGE) {
+                printf("Please guess a number between 1 and %d.\n", RANGE);
+                
+            } else {
+                
+                tries += 1;
+                
+                if (guess == secret_number) {
+                    
+                    printf("Congratulations! You guessed the number in %d %s!\n", tries, tries > 1 ? "tries" : "try");
+                    guessed = TRUE;
+                } else {
+                    
+                    printf("Hint: too %s!\n", guess < secret_number ? "low" : "high");
+                }
+            }
+        }
+        
+        printf("Play again? (y/n, default: n): ");
+        fgets(buffer, BUFFER_LEN, stdin);
+        if(strlen(buffer) <= 1 || tolower(buffer[0]) != 'y'){
+            keep_playing = FALSE;
+        }
+    }
+    return 0;
+}
