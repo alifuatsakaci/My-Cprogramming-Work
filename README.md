@@ -1,2 +1,2 @@
 # My-Cprogramming-Work
-Repository of what I am learning and working on during Algorithm and Programming lecture. File will be updated project to project until end of the semester.
+This repository contains my lab exercises and projects from the Algorithm and Programming course, part of my Electronics and Communication Engineering degree. The content focuses on fundamental C language programming concepts, algorithms, and problem-solving techniques. Repository will be updated as the course progresses.
