@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+#define TRUE 1
+#define FALSE 0
+#define BUFFER_LEN 100
+
+int main() {
+    float balance = 500.0;
+    int choice;
+    float amount;
+    int done = FALSE;
+
+    printf("A&P Bank Virtual ATM\n");
+    printf("--------------------\n");
+    printf("Current balance: %.2f EUR\n", balance);
+
+    while (!done) {
+        printf("\nPlease choose an option:\n");
+        printf("1. Deposit funds\n");
+        printf("2. Withdraw funds\n");
+        printf("3. Check balance\n");
+        printf("4. Exit\n");
+        printf("Your choice: ");
+
+        while (scanf("%d", &choice) != 1) {
+            printf("Please enter a valid number!\n");
+        }
+
+        switch(choice){
+        case 1:
+            printf("Enter the amount you wish to deposit: ");
+            scanf("%f", &amount);
+            if (amount > 0) {
+                balance += amount;
+                printf("Transaction successful! New balance: %.2f EUR\n", balance);
+            } else {
+                printf("Invalid amount!\n");
+            }
+            break;
+        case 2:
+            printf("Enter the amount you wish to withdraw: ");
+            scanf("%f", &amount);
+            if (amount <= balance) {
+                balance -= amount;
+                printf("Transaction successful! New balance: %.2f EUR\n", balance);
+            } else {
+                printf("Insufficient funds!\n");
+            }
+            break;
+        case 3:
+            printf("Current balance: %.2f EUR\n", balance);
+            break;
+        case 4:
+            done = TRUE;
+            break;
+        default:
+            printf("Invalid choice!\n");
+            break;
+        }
+    }
+
+    return 0;
+}
